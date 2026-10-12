@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COMECHE — Conta</title>
+<style>
+body{margin:0;background:#07111f;color:#fff;font-family:Arial,sans-serif;display:grid;place-items:center;min-height:100vh;padding:20px;box-sizing:border-box}
+main{width:100%;max-width:380px;background:#101e31;padding:26px;border-radius:18px;box-sizing:border-box}
+h1{color:#55a6ff}input,button{width:100%;padding:13px;margin-top:12px;box-sizing:border-box;border-radius:8px;font-size:16px}input{background:#07111f;color:white;border:1px solid #3b506a}button{background:#2188ff;color:white;border:0;font-weight:bold}.alt{background:#263a54}#msg{overflow-wrap:anywhere}
+</style>
+</head>
+<body><main>
+<h1>COMECHE</h1><p>O teu mercado. As tuas oportunidades.</p>
+<h2 id="title">Entrar na conta</h2>
+<form id="form"><input id="email" type="email" placeholder="O teu email" required><input id="pass" type="password" placeholder="Palavra-passe (mínimo 6)" minlength="6" required><button id="submit">Entrar</button></form>
+<button class="alt" id="toggle" type="button">Criar conta nova</button><p id="msg"></p>
+</main>
+<script type="module">
+import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const URL='https://mejpfnuyxkvxvsxrbttj.supabase.co;
+const KEY='sb_publishable_hK9qkuHEsZltP_pO-8nosg_Ol09wKkw';
+const sb=createClient(URL,KEY);let signup=false;
+const msg=document.querySelector('#msg');
+document.querySelector('#toggle').onclick=()=>{signup=!signup;document.querySelector('#title').textContent=signup?'Criar conta':'Entrar na conta';document.querySelector('#submit').textContent=signup?'Registar':'Entrar';document.querySelector('#toggle').textContent=signup?'Já tenho conta':'Criar conta nova';msg.textContent=''};
+document.querySelector('#form').onsubmit=async e=>{e.preventDefault();msg.textContent='A processar...';try{let r=signup?await sb.auth.signUp({email:email.value,password:pass.value}):await sb.auth.signInWithPassword({email:email.value,password:pass.value});if(r.error)throw r.error;msg.textContent=signup?'Registo enviado. Verifica o email se for pedido.':'Sessão iniciada!'}catch(err){msg.textContent='Erro: '+err.message}};
+</script></body></html>
