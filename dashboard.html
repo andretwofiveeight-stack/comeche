@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>COMECHE — Painel do vendedor</title>
+<style>
+:root{color-scheme:dark;--bg:#080808;--panel:#141414;--line:#303030;--muted:#aaa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1000px;margin:auto;padding:20px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:8px 0 20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.1em;color:inherit;text-decoration:none}.logo{width:38px;height:38px;border:1px solid #555;border-radius:11px;background:#000;display:grid;place-items:center;font-size:25px}
+.btn{display:inline-block;border:1px solid #555;border-radius:10px;padding:10px 14px;background:#fff;color:#000;font-weight:750;cursor:pointer;text-decoration:none}.ghost{background:transparent;color:#fff}
+.hero{padding:30px 0}.eyebrow{font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;color:#bbb;font-weight:800}h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin:8px 0}.muted{color:var(--muted)}
+.stats,.actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.stat,.action,.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:18px}.stat strong{display:block;font-size:1.5rem}.stat span{font-size:.88rem;color:var(--muted)}
+h2{font-size:1.3rem;margin:28px 0 14px}.action{text-align:left;color:#fff;min-height:165px;cursor:pointer;display:flex;flex-direction:column}.action:hover{border-color:#888}.icon{font-size:1.5rem;margin-bottom:12px}.action h3{margin:0 0 5px}.action p{color:var(--muted);margin:0;font-size:.9rem}.arrow{margin-top:auto;padding-top:14px;font-weight:800}
+.panel{margin-top:22px}.empty{text-align:center;padding:20px;border:1px dashed #555;border-radius:10px;color:#aaa}.item{padding:13px 0;border-bottom:1px solid #333;display:flex;justify-content:space-between;gap:12px}.item:last-child{border:0}.tag{font-size:.75rem;border:1px solid #555;padding:3px 8px;border-radius:30px;white-space:nowrap}
+.overlay{position:fixed;inset:0;background:#000c;display:none;place-items:center;padding:15px;z-index:5}.overlay.open{display:grid}.modal{width:min(520px,100%);max-height:90vh;overflow:auto;background:#161616;border:1px solid #555;border-radius:16px;padding:20px}.modalhead{display:flex;justify-content:space-between;align-items:center}.field{display:grid;gap:6px;margin-top:13px}.field input,.field textarea{background:#080808;color:#fff;border:1px solid #555;border-radius:8px;padding:12px;width:100%;font:inherit}.field textarea{min-height:80px}.actionsrow{display:flex;gap:10px;margin-top:18px}.foot{color:#888;font-size:.85rem;padding:25px 0}
+@media(max-width:650px){.stats{grid-template-columns:1fr}.actions{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{padding:15px}}@media(max-width:400px){.actions{grid-template-columns:1fr}.top{align-items:flex-start;flex-wrap:wrap}}
+</style>
+</head>
+<body><div class="wrap">
+<header class="top"><a class="brand" href="comeche-index-1.html"><span class="logo">C·</span> COMECHE</a><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn ghost" id="lang">EN</button><a class="btn ghost" href="comeche-index-1.html">Marketplace</a><a class="btn" href="auth.html">Entrar / Registar</a></div></header>
+<section class="hero"><div class="eyebrow">Espaço do criador</div><h1>O teu negócio começa aqui.</h1><p class="muted">Cria e organiza ofertas para o teu público. Esta é uma demonstração: as ofertas ficam guardadas apenas neste navegador.</p></section>
+<section class="stats"><div class="stat"><strong id="count">0</strong><span>Ofertas guardadas neste dispositivo</span></div><div class="stat"><strong>—</strong><span>Vendas confirmadas (ainda não ligadas)</span></div><div class="stat"><strong>—</strong><span>Saldo (pagamentos não ativos)</span></div></section>
+<h2>O que queres vender?</h2><section class="actions">
+<button class="action" data-type="eBook"><span class="icon">▤</span><h3>eBook</h3><p>Publica guias, livros digitais e PDFs.</p><span class="arrow">Criar eBook →</span></button>
+<button class="action" data-type="Curso online"><span class="icon">▷</span><h3>Curso online</h3><p>Organiza uma formação ou aulas.</p><span class="arrow">Criar curso →</span></button>
+<button class="action" data-type="Link de afiliado"><span class="icon">↗</span><h3>Link de afiliado</h3><p>Guarda ofertas de parceiros.</p><span class="arrow">Adicionar link →</span></button>
+<button class="action" data-type="Produto digital"><span class="icon">◇</span><h3>Produto digital</h3><p>Templates, ficheiros e downloads.</p><span class="arrow">Adicionar produto →</span></button>
+<button class="action" data-type="Produto físico"><span class="icon">□</span><h3>Produto físico</h3><p>Regista artigos físicos para vender.</p><span class="arrow">Adicionar artigo →</span></button>
+<button class="action" data-type="Serviço"><span class="icon">✳</span><h3>Serviço</h3><p>Apresenta um serviço teu.</p><span class="arrow">Adicionar serviço →</span></button>
+</section>
+<section class="panel"><h2 style="margin-top:0">As tuas ofertas</h2><div id="offers" class="empty">Ainda não criaste ofertas. Escolhe uma opção acima para começar.</div><p class="muted" style="font-size:.85rem">Esta demonstração não publica produtos, processa pagamentos nem guarda dados numa conta online.</p></section>
+<footer class="foot">© <span id="year"></span> COMECHE · O teu mercado. As tuas oportunidades.</footer></div>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><form class="modal" id="form"><div class="modalhead"><h2 id="modalTitle" style="margin:0">Nova oferta</h2><button class="btn ghost" type="button" id="close">Fechar</button></div><p id="typeLabel" class="muted"></p>
+<div class="field"><label for="name">Nome da oferta *</label><input id="name" maxlength="100" required placeholder="Ex.: Guia de Física Moderna"></div>
+<div class="field"><label for="description">Descrição</label><textarea id="description" maxlength="500" placeholder="O que o comprador vai receber?"></textarea></div>
+<div class="field"><label for="price">Preço indicativo</label><input id="price" maxlength="40" placeholder="Ex.: 500 MZN / 5 EUR"></div>
+<div class="field" id="urlField" hidden><label for="url">Link da oferta *</label><input id="url" type="url" placeholder="https://..."></div>
+<div class="actionsrow"><button class="btn" type="submit">Guardar oferta</button><button class="btn ghost" type="button" id="cancel">Cancelar</button></div><p id="notice" class="muted" role="status"></p></form></div>
+<script>
+const KEY='comeche_demo_offers_v1';let type='eBook',language='pt';const $=id=>document.getElementById(id);
+function list(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return []}}
+function render(){const a=list();$('count').textContent=a.length;if(!a.length){$('offers').className='empty';$('offers').textContent=language==='pt'?'Ainda não criaste ofertas. Escolhe uma opção acima para começar.':'No offers yet. Choose an option above to begin.';return}$('offers').className='';$('offers').replaceChildren();a.forEach(x=>{const row=document.createElement('div');row.className='item';const info=document.createElement('div'),title=document.createElement('strong'),desc=document.createElement('div');title.textContent=x.name;desc.className='muted';desc.textContent=x.type+(x.price?' · '+x.price:'')+(x.description?' — '+x.description:'');info.append(title,desc);if(x.url){const link=document.createElement('a');link.href=x.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent=' Abrir link ↗';info.append(link)}const del=document.createElement('button');del.className='btn ghost';del.textContent=language==='pt'?'Eliminar':'Delete';del.onclick=()=>{localStorage.setItem(KEY,JSON.stringify(list().filter(y=>y.id!==x.id)));render()};row.append(info,del);$('offers').append(row)})}
+function openForm(t){type=t;$('form').reset();$('typeLabel').textContent=t;$('urlField').hidden=t!=='Link de afiliado';$('url').required=t==='Link de afiliado';$('overlay').classList.add('open');$('name').focus()}
+function close(){ $('overlay').classList.remove('open') }
+document.querySelectorAll('[data-type]').forEach(b=>b.onclick=()=>openForm(b.dataset.type));$('close').onclick=close;$('cancel').onclick=close;$('overlay').onclick=e=>{if(e.target===$('overlay'))close()};document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+$('form').onsubmit=e=>{e.preventDefault();try{const a=list();a.unshift({id:Date.now().toString(),type,name:$('name').value.trim(),description:$('description').value.trim(),price:$('price').value.trim(),url:$('url').value.trim()});localStorage.setItem(KEY,JSON.stringify(a));close();render()}catch{$('notice').textContent='Não foi possível guardar neste navegador.'}};
+$('lang').onclick=()=>{language=language==='pt'?'en':'pt';document.documentElement.lang=language;$('lang').textContent=language==='pt'?'EN':'PT';document.querySelector('.eyebrow').textContent=language==='pt'?'Espaço do criador':'Creator space';document.querySelector('h1').textContent=language==='pt'?'O teu negócio começa aqui.':'Your business starts here.';render()};$('year').textContent=new Date().getFullYear();render();
+</script></body></html>
